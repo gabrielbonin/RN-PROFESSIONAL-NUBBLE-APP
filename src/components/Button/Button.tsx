@@ -1,15 +1,27 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
 
 import {Text} from '../Text/Text';
 import {useTheme} from '@shopify/restyle';
 import {Theme} from '../../theme/theme';
+import {Box} from '../Box/Box';
 
-export function Button({children, onPress}) {
-  const {} = useTheme<Theme>();
+interface ButtonProps {
+  title: string;
+  loading?: boolean;
+}
+
+export function Button({title, loading}: ButtonProps) {
+  const {colors} = useTheme<Theme>();
   return (
-    <TouchableOpacity onPress={onPress}>
-      <Text preset="button">{children}</Text>
-    </TouchableOpacity>
+    <Box
+      backgroundColor="greenPrimary"
+      height={50}
+      justifyContent="center"
+      paddingHorizontal="s24"
+      alignItems="center">
+      <Text preset="paragraphMedium" bold>
+        {title}
+      </Text>
+    </Box>
   );
 }
