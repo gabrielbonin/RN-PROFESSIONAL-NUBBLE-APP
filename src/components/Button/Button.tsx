@@ -3,7 +3,8 @@ import React from 'react';
 import {Text} from '../Text/Text';
 import {useTheme} from '@shopify/restyle';
 import {Theme} from '../../theme/theme';
-import {Box, TouchableOpacityBoxProps} from '../Box/Box';
+import {TouchableOpacityBoxProps, TouchableOpacityBox} from '../Box/Box';
+import {ActivityIndicator} from 'react-native';
 
 interface ButtonProps extends TouchableOpacityBoxProps {
   title: string;
@@ -15,18 +16,22 @@ export function Button({
   loading,
   ...touchableOpacityBoxProps
 }: ButtonProps) {
-  const {colors} = useTheme<Theme>();
   return (
-    <Box
+    <TouchableOpacityBox
       backgroundColor="greenPrimary"
       height={50}
       justifyContent="center"
-      paddingHorizontal="s24"
       alignItems="center"
+      paddingHorizontal="s24"
+      borderRadius="s16"
       {...touchableOpacityBoxProps}>
-      <Text preset="paragraphMedium" bold>
-        {title}
-      </Text>
-    </Box>
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <Text preset="paragraphMedium" bold color="primaryContrast">
+          {title}
+        </Text>
+      )}
+    </TouchableOpacityBox>
   );
 }
