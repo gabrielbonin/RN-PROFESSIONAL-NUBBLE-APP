@@ -23,7 +23,6 @@ export function Button({
   const buttonPreset = buttonPresets[preset];
   return (
     <TouchableOpacityBox
-      backgroundColor="greenPrimary"
       height={50}
       justifyContent="center"
       alignItems="center"
