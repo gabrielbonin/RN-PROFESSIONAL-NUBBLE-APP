@@ -15,7 +15,7 @@ function App(): React.JSX.Element {
         </Text>
         <Button preset="primary" title="Press me" />
         <Button preset="outline" title="Press me" />
-        <Button preset="secondary" title="Press me" />
+
         <EyeOffIcon color="red" size={30} />
         <EyeOnIcon color="blue" size={30} />
       </SafeAreaView>
