@@ -1,23 +1,48 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, TextInput, View} from 'react-native';
 import {Text} from './src/components/Text/Text';
-import {Button} from './src/components/Button/Button';
+
 import {ThemeProvider} from '@shopify/restyle';
 import {theme} from './src/theme/theme';
-import {EyeOffIcon} from './src/assets/icons/EyeOffIcon';
-import {EyeOnIcon} from './src/assets/icons/EyeOnIcon';
+import {Box} from './src/components/Box/Box';
+import {Button} from './src/components/Button/Button';
+
 function App(): React.JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <SafeAreaView>
-        <Text preset="headingSmall" color="carrotSecondary">
-          CoffeStack
-        </Text>
-        <Button preset="primary" title="Press me" />
-        <Button preset="outline" title="Press me" />
+        <View style={{paddingHorizontal: 24}}>
+          <Text marginBottom="s8" preset="headingLarge">
+            Olá!
+          </Text>
+          <Text marginBottom="s40" preset="paragraphLarge">
+            Digite seu e-mail e senha para entrar
+          </Text>
+          <Box mb="s20">
+            <TextInput
+              placeholder="Digite seu e-mail"
+              style={{borderWidth: 1, height: 50}}
+            />
+          </Box>
+          <Box>
+            <TextInput
+              placeholder="Digite sua senha"
+              style={{borderWidth: 1, height: 50}}
+            />
+          </Box>
 
-        <EyeOffIcon color="red" size={30} />
-        <EyeOnIcon color="blue" size={30} />
+          <Text color="primary" bold preset="paragraphSmall" mt="s10">
+            Esqueci minha senha
+          </Text>
+
+          <Button title="Entrar" mt="s48" onPress={() => {}} />
+          <Button
+            preset="outline"
+            title="Criar uma conta"
+            mt="s12"
+            onPress={() => {}}
+          />
+        </View>
       </SafeAreaView>
     </ThemeProvider>
   );
