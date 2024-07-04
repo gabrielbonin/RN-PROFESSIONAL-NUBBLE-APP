@@ -1,6 +1,6 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import {IconComponent} from '../../../components/Icon/Icon';
+import {Icon} from '../../../components/Icon/Icon';
 import {Box} from '../../../components/Box/Box';
 import {Text} from '../../../components/Text/Text';
 import TextInput from '../../../components/TextInput/TextInput';
@@ -31,7 +31,6 @@ export function LoginScreen() {
         label="Senha"
         errorMessage="Mensagem de Erro"
         placeholder="Digite sua senha"
-        rightComponent={<IconComponent name="eyeOff" color="gray2" />}
       />
       <Text color="primary" bold preset="paragraphSmall">
         Esqueci minha senha
