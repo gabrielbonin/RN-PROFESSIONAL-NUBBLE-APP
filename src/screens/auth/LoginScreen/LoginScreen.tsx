@@ -13,6 +13,10 @@ export function LoginScreen({navigation}: ScreenProps) {
   function navigateToSignUpScreen() {
     navigation.navigate('SignUpScreen');
   }
+
+  function navigateToForgotPasswordScreen() {
+    navigation.navigate('ForgotPassword');
+  }
   return (
     <Screen>
       <Text marginBottom="s8" preset="headingLarge">
@@ -36,7 +40,11 @@ export function LoginScreen({navigation}: ScreenProps) {
         errorMessage="Mensagem de Erro"
         placeholder="Digite sua senha"
       />
-      <Text color="primary" bold preset="paragraphSmall">
+      <Text
+        color="primary"
+        bold
+        preset="paragraphSmall"
+        onPress={navigateToForgotPasswordScreen}>
         Esqueci minha senha
       </Text>
       <Button title="Entrar" mt="s48" onPress={() => {}} />

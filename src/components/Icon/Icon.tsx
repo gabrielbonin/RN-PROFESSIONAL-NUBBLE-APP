@@ -1,4 +1,9 @@
 import React from 'react';
+import {Pressable} from 'react-native';
+
+import {useAppTheme} from '../../hooks/useAppTheme';
+import {ThemeColors} from '../../theme/theme';
+
 import {ArrowLeftIcon} from '../../assets/icons/ArrowLeftIcon';
 import {ArrowRightIcon} from '../../assets/icons/ArrowRightIcon';
 import {BellIcon} from '../../assets/icons/BellIcon';
@@ -7,13 +12,14 @@ import {BookmarkFillIcon} from '../../assets/icons/BookmarkFillIcon';
 import {BookmarkIcon} from '../../assets/icons/BookmarkIcon';
 
 import {CameraIcon} from '../../assets/icons/CameraIcon';
+import {CameraClick} from '../../assets/icons/CameraClick';
 import {ChatIcon} from '../../assets/icons/ChatIcon';
 import {ChatOnIcon} from '../../assets/icons/ChatOnIcon';
 import {CheckIcon} from '../../assets/icons/CheckIcon';
-
+import {CheckRoundIcon} from '../../assets/icons/CheckRoundIcon';
 import {ChevronRightIcon} from '../../assets/icons/ChevronRightIcon';
 import {CommentIcon} from '../../assets/icons/CommentIcon';
-
+import {ErrorRoundIcon} from '../../assets/icons/ErrorRoundIcon';
 import {EyeOffIcon} from '../../assets/icons/EyeOffIcon';
 import {EyeOnIcon} from '../../assets/icons/EyeOnIcon';
 import {FlashOffIcon} from '../../assets/icons/FlashOffIcon';
@@ -23,47 +29,52 @@ import {HeartIcon} from '../../assets/icons/HeartIcon';
 import {HomeFillIcon} from '../../assets/icons/HomeFillIcon';
 import {HomeIcon} from '../../assets/icons/HomeIcon';
 import {MessageIcon} from '../../assets/icons/MessageIcon';
-
+import {MessageRoundIcon} from '../../assets/icons/MessageRoundIcon';
 import {NewPostIcon} from '../../assets/icons/NewPostIcon';
 import {ProfileFillIcon} from '../../assets/icons/ProfileFillIcon';
 import {ProfileIcon} from '../../assets/icons/ProfileIcon';
 import {SearchIcon} from '../../assets/icons/SearchIcon';
 import {SettingsIcon} from '../../assets/icons/SettingsIcon';
 import {TrashIcon} from '../../assets/icons/TrashIcon';
-import {ThemeColors} from '../../theme/theme';
-import {useAppTheme} from '../../hooks/useAppTheme';
-import {Pressable} from 'react-native';
 
 export interface IconBase {
   size?: number;
   color?: string;
+  fillColor?: string;
 }
 
-interface Props {
-  name: IconNames;
+export interface IconProps {
+  name: IconName;
   color?: ThemeColors;
+  fillColor?: ThemeColors;
   size?: number;
   onPress?: () => void;
 }
-
 export function Icon({
   name,
   color = 'backgroundContrast',
-  size = 20,
+  fillColor = 'background',
+  size,
   onPress,
-}: Props) {
+}: IconProps) {
   const {colors} = useAppTheme();
   const SVGIcon = iconRegistry[name];
 
+  const iconProps: React.ComponentProps<typeof SVGIcon> = {
+    size,
+    color: colors[color],
+    fillColor: colors[fillColor],
+  };
+
   if (onPress) {
     return (
-      <Pressable hitSlop={10} onPress={onPress}>
-        <SVGIcon color={colors[color]} />
+      <Pressable testID={name} hitSlop={10} onPress={onPress}>
+        <SVGIcon {...iconProps} />
       </Pressable>
     );
   }
 
-  return <SVGIcon color={colors[color]} size={size} />;
+  return <SVGIcon {...iconProps} />;
 }
 
 const iconRegistry = {
@@ -74,11 +85,12 @@ const iconRegistry = {
   bookmark: BookmarkIcon,
   bookmarkFill: BookmarkFillIcon,
   camera: CameraIcon,
-
+  cameraClick: CameraClick,
   chat: ChatIcon,
   chatOn: ChatOnIcon,
   check: CheckIcon,
-
+  checkRound: CheckRoundIcon,
+  errorRound: ErrorRoundIcon,
   comment: CommentIcon,
   chevronRight: ChevronRightIcon,
   eyeOn: EyeOnIcon,
@@ -90,7 +102,7 @@ const iconRegistry = {
   home: HomeIcon,
   homeFill: HomeFillIcon,
   message: MessageIcon,
-
+  messageRound: MessageRoundIcon,
   newPost: NewPostIcon,
   profile: ProfileIcon,
   profileFill: ProfileFillIcon,
@@ -100,4 +112,5 @@ const iconRegistry = {
 };
 
 type IconType = typeof iconRegistry;
-type IconNames = keyof IconType;
+
+type IconName = keyof IconType;
