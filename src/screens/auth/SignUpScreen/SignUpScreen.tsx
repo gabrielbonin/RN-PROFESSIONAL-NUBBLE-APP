@@ -11,6 +11,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useResetNavigationSuccess} from '../../../hooks/useResetNavigationSuccess';
 import {useForm, Controller} from 'react-hook-form';
 import {FormTextInput} from '../../../components/Form/FormTextInput';
+import {FormPasswordTextInput} from '../../../components/Form/FormPasswordInput';
 
 type SignUpFormType = {
   username: string;
@@ -35,6 +36,7 @@ export function SignUpScreen({navigation}: ScreenProps) {
   });
 
   function submitForm(formValues: SignUpFormType) {
+    console.log(formValues);
     reset({
       title: 'Sua conta foi criada com sucesso!',
       description: 'Agora é só fazer login na nossa plataforma',
@@ -58,57 +60,38 @@ export function SignUpScreen({navigation}: ScreenProps) {
         boxProps={{mb: 's20'}}
       />
 
-      <Controller
+      <FormTextInput
         name="fullName"
+        label="Seu nome completo"
+        placeholder="Digite seu nome completo"
+        boxProps={{mb: 's20'}}
+        autoCapitalize="words"
         control={control}
         rules={{
           required: 'Nome obrigatório',
         }}
-        render={({field: {onChange, value}, fieldState}) => (
-          <TextInput
-            label="Seu nome completo"
-            placeholder="Digite seu nome completo"
-            errorMessage={fieldState.error?.message}
-            value={value}
-            onChangeText={onChange}
-            boxProps={{mb: 's20'}}
-            autoCapitalize="words"
-          />
-        )}
       />
-      <Controller
+      <FormTextInput
         name="email"
         control={control}
+        label="Seu E-mail"
+        placeholder="Digite seu E-mail"
+        boxProps={{mb: 's20'}}
         rules={{
           required: 'Nome obrigatório',
         }}
-        render={({field: {onChange, value}, fieldState}) => (
-          <TextInput
-            label="Seu E-mail"
-            placeholder="Digite seu E-mail"
-            boxProps={{mb: 's20'}}
-            errorMessage={fieldState.error?.message}
-            value={value}
-            onChangeText={onChange}
-          />
-        )}
       />
-      <Controller
+      <FormPasswordTextInput
+        label="Senha"
         name="password"
         control={control}
         rules={{
-          required: 'Nome obrigatório',
+          required: 'Senha obrigatória',
+          minLength: {
+            value: 6,
+            message: 'Senha precisa ter no mínimo 6 caracteres',
+          },
         }}
-        render={({field: {onChange, value}, fieldState}) => (
-          <PasswordInput
-            label="Senha"
-            placeholder="Digite sua senha"
-            boxProps={{mb: 's20'}}
-            errorMessage={fieldState.error?.message}
-            value={value}
-            onChangeText={onChange}
-          />
-        )}
       />
 
       <Button
