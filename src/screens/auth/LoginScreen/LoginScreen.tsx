@@ -1,13 +1,16 @@
 import React from 'react';
 import {Text} from '../../../components/Text/Text';
-import TextInput from '../../../components/TextInput/TextInput';
+
 import {Button} from '../../../components/Button/Button';
 import {Screen} from '../../../components/Screen/Screen';
-import {PasswordInput} from '../../../components/PasswordIpunt/PasswordInput';
+
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../routes/Routes';
 
 import {useForm, Controller} from 'react-hook-form';
+import {zodResolver} from '@hookform/resolvers/zod';
+import {LoginSchema, loginSchema} from './loginSchema';
+import {FormTextInput} from '../../../components/Form/FormTextInput';
 
 type LoginFormType = {
   email: string;
@@ -25,7 +28,8 @@ export function LoginScreen({navigation}: ScreenProps) {
     navigation.navigate('ForgotPassword');
   }
 
-  const {handleSubmit, control, formState} = useForm<LoginFormType>({
+  const {handleSubmit, control, formState} = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -33,7 +37,13 @@ export function LoginScreen({navigation}: ScreenProps) {
     mode: 'onChange',
   });
 
-  function submitForm({email, password}: LoginFormType) {}
+  function submitForm({email, password}: LoginFormType) {
+    const data = {
+      email,
+      password,
+    };
+    console.log(data);
+  }
 
   return (
     <Screen>
@@ -44,54 +54,25 @@ export function LoginScreen({navigation}: ScreenProps) {
         Digite seu e-mail e senha para entrar
       </Text>
 
-      <Controller
+      <FormTextInput
         control={control}
+        autoCapitalize="none"
         name="email"
-        rules={{
-          required: 'e-mail obrigatório',
-          pattern: {
-            value: /\S+@\S+\.\S+/,
-            message: 'e-mail inválido',
-          },
+        label="Login"
+        placeholder="Digite seu e-mail"
+        boxProps={{
+          marginBottom: 's20',
         }}
-        render={({field: {onChange, onBlur, value}, fieldState}) => (
-          <TextInput
-            boxProps={{
-              marginBottom: 's20',
-            }}
-            label="Login"
-            placeholder="Digite seu e-mail"
-            onChangeText={onChange}
-            onBlur={onBlur}
-            value={value}
-            errorMessage={fieldState.error?.message}
-            autoCapitalize="none"
-          />
-        )}
       />
 
-      <Controller
+      <FormTextInput
         control={control}
         name="password"
-        rules={{
-          required: 'Senha obrigatória',
-          minLength: {
-            value: 8,
-            message: 'Senha deve ter no mínimo 8 caracteres',
-          },
+        boxProps={{
+          marginBottom: 's10',
         }}
-        render={({field: {onChange, onBlur, value}, fieldState}) => (
-          <PasswordInput
-            boxProps={{
-              marginBottom: 's10',
-            }}
-            label="Senha"
-            errorMessage={fieldState.error?.message}
-            value={value}
-            onChangeText={onChange}
-            placeholder="Digite sua senha"
-          />
-        )}
+        label="Senha"
+        placeholder="Digite sua senha"
       />
 
       <Text
