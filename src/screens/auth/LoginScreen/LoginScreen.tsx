@@ -1,16 +1,13 @@
 import React from 'react';
-import {Text} from '../../../components/Text/Text';
 
-import {Button} from '../../../components/Button/Button';
-import {Screen} from '../../../components/Screen/Screen';
+import {Button, Screen, Text, FormTextInput} from '@components';
 
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../../routes/Routes';
+import {RootStackParamList} from '@routes';
 
-import {useForm, Controller} from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {LoginSchema, loginSchema} from './loginSchema';
-import {FormTextInput} from '../../../components/Form/FormTextInput';
 
 type LoginFormType = {
   email: string;
