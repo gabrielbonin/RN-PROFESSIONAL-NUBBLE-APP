@@ -15,7 +15,7 @@ import {
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'ForgotPassword'>;
 
-export function ForgotPasswordScreen({navigation}: ScreenProps) {
+export function ForgotPasswordScreen({}: ScreenProps) {
   const {reset} = useResetNavigationSuccess();
 
   const {control, formState, handleSubmit} = useForm<ForgotPasswordSchema>({
