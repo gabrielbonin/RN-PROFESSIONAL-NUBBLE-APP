@@ -4,8 +4,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {IconProps} from '@components';
 import {
-  ForgotPasswordScreen,
   LoginScreen,
+  ForgotPasswordScreen,
   SignUpScreen,
   SuccessScreen,
 } from '@screens';
@@ -18,7 +18,7 @@ export type AuthStackParamList = {
     description: string;
     icon: Pick<IconProps, 'name' | 'color'>;
   };
-  ForgotPassword: undefined;
+  ForgotPasswordScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
@@ -26,15 +26,18 @@ const Stack = createNativeStackNavigator<AuthStackParamList>();
 export function AuthStack() {
   return (
     <Stack.Navigator
-      initialRouteName="LoginScreen"
       screenOptions={{
         headerShown: false,
         fullScreenGestureEnabled: true,
-      }}>
+      }}
+      initialRouteName="LoginScreen">
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
       <Stack.Screen name="SuccessScreen" component={SuccessScreen} />
-      <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+      <Stack.Screen
+        name="ForgotPasswordScreen"
+        component={ForgotPasswordScreen}
+      />
     </Stack.Navigator>
   );
 }
