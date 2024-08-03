@@ -10,3 +10,4 @@ export * from './Screen/components/ScreenContainer';
 export * from './Screen/Screen';
 export * from './PasswordInput/PasswordInput';
 export * from './TextInput/TextInput';
+export * from './PostItem/PostItem';
