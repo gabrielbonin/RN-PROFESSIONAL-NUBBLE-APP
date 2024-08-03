@@ -24,6 +24,9 @@
       "@domain": [
         "./src/domain"
       ],
+      "@brand": [
+        "./src/brand"
+      ],
     }
   }
 }
