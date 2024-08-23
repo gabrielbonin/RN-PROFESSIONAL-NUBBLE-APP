@@ -1,11 +1,11 @@
+import {postAdapter} from './postAdapter';
 import {postApi} from './postApi';
-import {Post} from './types';
+import {Post} from './postTypes';
 
 async function getList(): Promise<Post[]> {
-  //simulate network request
-  const postList = await postApi.getList();
+  const postPageAPI = await postApi.getList();
 
-  return postList;
+  return postPageAPI.data.map(postAdapter.toPost);
 }
 
 export const postService = {
