@@ -30,6 +30,9 @@
       "@api": [
         "./src/api"
       ],
+      "@types": [
+        "./src/types"
+      ],
     }
   }
 }
