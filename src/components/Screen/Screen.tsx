@@ -1,23 +1,20 @@
 import React from 'react';
 import {KeyboardAvoidingView, Platform} from 'react-native';
 
-import {useNavigation} from '@react-navigation/native';
-
 import {
   ScrollViewContainer,
   ViewContainer,
-  Icon,
-  Text,
   Box,
-  TouchableOpacityBox,
   BoxProps,
+  ScreenHeader,
 } from '@components';
 import {useAppSafeArea, useAppTheme} from '@hooks';
 
-interface ScreenProps extends BoxProps {
+export interface ScreenProps extends BoxProps {
   children: React.ReactNode;
   canGoBack?: boolean;
   scrollable?: boolean;
+  title?: string;
 }
 
 export function Screen({
@@ -25,12 +22,11 @@ export function Screen({
   canGoBack = false,
   scrollable = false,
   style,
+  title,
   ...boxProps
 }: ScreenProps) {
   const {top, bottom} = useAppSafeArea();
   const {colors} = useAppTheme();
-
-  const navigation = useNavigation();
 
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
   return (
@@ -48,17 +44,7 @@ export function Screen({
             style,
           ]}
           {...boxProps}>
-          {canGoBack && (
-            <TouchableOpacityBox
-              mb="s24"
-              flexDirection="row"
-              onPress={navigation.goBack}>
-              <Icon name="arrowLeft" color="primary" />
-              <Text preset="paragraphMedium" semiBold ml="s8">
-                Voltar
-              </Text>
-            </TouchableOpacityBox>
-          )}
+          <ScreenHeader title={title} canGoBack={canGoBack} />
           {children}
         </Box>
       </Container>

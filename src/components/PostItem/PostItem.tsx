@@ -1,5 +1,4 @@
 import React from 'react';
-import {Dimensions, Image} from 'react-native';
 
 import {Post} from '@domain';
 
@@ -28,6 +27,7 @@ export function PostItem({post}: Props) {
         commentCount={post.commentCount}
         text={post.text}
         author={post.author}
+        id={post.id}
       />
     </Box>
   );
