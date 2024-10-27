@@ -4,7 +4,7 @@ import {FlatList, ListRenderItemInfo} from 'react-native';
 import {usePostCommentList} from '@domain';
 import {PostComment} from '@domain';
 
-import {Box, Screen, Text} from '@components';
+import {Box, Screen} from '@components';
 import {useAppSafeArea} from '@hooks';
 import {AppScreenProps} from '@routes';
 
