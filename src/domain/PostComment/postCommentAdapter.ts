@@ -7,7 +7,7 @@ import {PostComment, PostCommentAPI} from './postCommentTypes';
 function toPostComment(postCommentAPI: PostCommentAPI): PostComment {
   return {
     id: postCommentAPI.id,
-    message: postCommentAPI.text,
+    message: postCommentAPI.message,
     createdAt: postCommentAPI.created_at,
     author: {
       id: postCommentAPI.user.id,

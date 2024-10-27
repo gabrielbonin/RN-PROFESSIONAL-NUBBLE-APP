@@ -12,7 +12,7 @@ export interface PostComment {
 
 export interface PostCommentAPI {
   id: number;
-  text: string;
+  message: string;
   user_id: number;
   image_url: string;
   is_fixed: boolean;

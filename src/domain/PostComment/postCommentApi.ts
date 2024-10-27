@@ -13,7 +13,7 @@ async function getList(
       ...pageParams,
     },
   });
-
+  console.log('response COMMENTS', response.data.data);
   return response.data;
 }
 
