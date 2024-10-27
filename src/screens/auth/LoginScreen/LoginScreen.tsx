@@ -37,7 +37,7 @@ export function LoginScreen({navigation}: AuthScreenProps<'LoginScreen'>) {
       password,
     };
     console.log(data);
-    navigation.navigate('');
+    navigation.navigate('SuccessScreen');
   }
 
   return (
