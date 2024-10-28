@@ -13,3 +13,4 @@ export * from './TextInput/TextInput';
 export * from './PostItem/PostItem';
 export * from './Screen/components/ScreenHeader';
 export * from './ProfileAvatar/ProfileAvatar';
+export * from './TextMessage/TextMessage';

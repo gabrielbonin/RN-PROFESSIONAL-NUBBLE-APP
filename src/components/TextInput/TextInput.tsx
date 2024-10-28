@@ -21,7 +21,7 @@ export function TextInput({
   errorMessage,
   rightComponent,
   boxProps,
-  ...RNTextInputProps
+  ...rnTextInputProps
 }: TextInputProps) {
   const {colors} = useAppTheme();
   const inputRef = useRef<RNTextInput>(null);
@@ -48,7 +48,7 @@ export function TextInput({
           <RNTextInput
             ref={inputRef}
             style={$textInputStyle}
-            {...RNTextInputProps}
+            {...rnTextInputProps}
             placeholderTextColor={colors.gray2}
           />
           {rightComponent && (
@@ -67,7 +67,7 @@ export function TextInput({
   );
 }
 
-const $textInputStyle: TextStyle = {
+export const $textInputStyle: TextStyle = {
   flexGrow: 1,
   flexShrink: 1,
   padding: 0,

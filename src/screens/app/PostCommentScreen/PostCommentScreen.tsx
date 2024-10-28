@@ -10,6 +10,7 @@ import {AppScreenProps} from '@routes';
 
 import {PostCommentBottom} from './components/PostCommentBottom';
 import {PostCommentItem} from './components/PostCommentItem';
+import {PostCommentTextMessage} from './components/PostCommentTextMessage';
 
 export function PostCommentScreen({
   route,
@@ -27,20 +28,24 @@ export function PostCommentScreen({
       </Box>
     );
   }
+
   return (
-    <Screen canGoBack title="Comentários">
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={list}
-        contentContainerStyle={{paddingBottom: bottom}}
-        renderItem={renderItem}
-        ListFooterComponent={
-          <PostCommentBottom
-            fetchNextPage={fetchNextPage}
-            hasNextPage={hasNextPage}
-          />
-        }
-      />
+    <Screen flex={1} canGoBack title="Comentários">
+      <Box flex={1} justifyContent="space-between">
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={list}
+          contentContainerStyle={{paddingBottom: bottom}}
+          renderItem={renderItem}
+          ListFooterComponent={
+            <PostCommentBottom
+              fetchNextPage={fetchNextPage}
+              hasNextPage={hasNextPage}
+            />
+          }
+        />
+        <PostCommentTextMessage postId={postId} />
+      </Box>
     </Screen>
   );
 }
